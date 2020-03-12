@@ -50,7 +50,7 @@ topology:
            Management0/0:
                link: link-ASA-CSR
                type: ethernet
-   ignw_nxos:
+   ignw_nxosv:
        interfaces:
            Management0:
                link: link-NXOS-CSR
