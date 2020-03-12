@@ -4,7 +4,7 @@ testbed:
 
 devices:
    ignw-csr: # <----- must match to your device hostname in the prompt
-       os: ios
+       os: iosxe
        type: CSR1000v
        credentials:
            default:
@@ -16,7 +16,7 @@ devices:
                ip: 10.0.0.5
                port: 22
    ignw-asav:
-       os: ios
+       os: asa
        type: ASAv
        credentials:
            default:
