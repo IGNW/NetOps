@@ -1,0 +1,57 @@
+# Testbed File for Dev Lab devices
+testbed:
+   name: IGNW_Dev_Lab_Testbed
+
+devices:
+   ignw-csr: # <----- must match to your device hostname in the prompt
+       os: ios
+       type: CSR1000v
+       credentials:
+           default:
+               username: ignw
+               password: ignw
+       connections:
+           a:
+               protocol: ssh
+               ip: 10.0.0.5
+               port: 22
+   ignw-asav:
+       os: ios
+       type: ASAv
+       credentials:
+           default:
+               username: ignw
+               password: ignw
+       connections:
+           a:
+               protocol: ssh
+               ip: 10.0.0.8
+               port: 22
+   ignw_nxosv:
+       os: nxos
+       type: N9300v
+       credentials:
+           default:
+               username: ignw
+               password: ignw
+       connections:
+           a:
+               protocol: ssh
+               ip: 10.0.0.6
+               port: 22            
+topology:
+   ignw-csr:
+       interfaces:
+           GigabitEthernet1:
+               link: link-CSR-ASA
+               type: ethernet
+   ignw-asav:
+       interfaces:
+           Management0/0:
+               link: link-ASA-CSR
+               type: ethernet
+   ignw_nxos:
+       interfaces:
+           Management0:
+               link: link-NXOS-CSR
+               type: ethernet
