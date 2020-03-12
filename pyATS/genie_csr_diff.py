@@ -19,8 +19,9 @@ prod_csr.connect()
 prod_output = prod_csr.parse('show run')
 prod_csr.disconnect()
 
-output = dev_output + prod_output
-
 # Print it nicely
 import pprint
-pprint.pprint(output)
+print(Dev CSR Interfaces")
+pprint.pprint(dev_output)
+print(Prod CSR Interfaces")
+pprint.pprint(prod_output)
