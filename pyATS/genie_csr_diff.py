@@ -23,12 +23,12 @@ prod_csr.disconnect()
 if set(dev_output.keys()) == set(prod_output.keys()):
   print("They have the same Interfaces")
 else:
-  print("The Production Interfaces are Different"
+  print("The Production Interfaces are Different")
   dev_interface_set = set(dev_output.keys())
   prod_interface_set = set(prod_output.keys())
-  print("Dev has these different interfaces: "
+  print("Dev has these different interfaces: ")
   print(dev_interface_set.difference(prod_interface_set))
-  print("Prod has these different interfaces: "
+  print("Prod has these different interfaces: ")
   print(prod_interface_set.difference(dev_interface_set))
 
 # Print it nicely
