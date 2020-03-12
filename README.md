@@ -1,3 +1,3 @@
-# NetOps
+# NetOps_pyATS
 
-## Place to put NetOps Lab code to pull when doing IGNW NetOPs Labs
+## Place to pull the NetOps pyATS and Genie Lab code for doing the IGNW NetOPs Labs
