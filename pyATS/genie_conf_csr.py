@@ -17,7 +17,13 @@ dev_csr_interface.shutdown = False
 # Verify Config
 print(dev_csr_interface.build_config(apply=False))
 
-# Add Y/N Logic
-# if...
-# To Apply= dev_csr_interface.build_config()
-# To Remove= dev_csr_interface.build_unconfig()
+answer = None
+while answer not in ("A", "d"):
+    answer = input("Apply changes or discard them? 'A' or 'd'")
+    if answer == "A":
+        dev_csr_interface.build_config()
+        print("Config chages Applied")
+    elif answer == "d":
+         print("Config changes Discarded!")
+    else:
+    	print("Please enter 'A' or 'd'.")
