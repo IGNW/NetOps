@@ -1,6 +1,7 @@
 # Using IGNW Lab Development CSR/ASR/NXOS
 # Import Genie
 from genie import testbed
+import pprint
 
 # Uses specific testbed file for Develoment side gear
 dev_testbed = testbed.load('ignwlab_dev_testbed.yaml')
@@ -20,19 +21,11 @@ prod_output = prod_csr.parse('show interfaces description')
 prod_csr.disconnect()
 
 # Determine if the keys are the same
-if set(dev_output.keys()) == set(prod_output.keys()):
+if dev_output.values() == prod_output.values():
   print("They have the same Interfaces")
 else:
   print("The Production Interfaces are Different")
-  dev_interface_set = set(dev_output.keys())
-  prod_interface_set = set(prod_output.keys())
-  print("Dev has these different interfaces: ")
-  print(dev_interface_set.difference(prod_interface_set))
-  print("Prod has these different interfaces: ")
-  print(prod_interface_set.difference(dev_interface_set))
 
-# Print it nicely
-import pprint
 print("Dev CSR Interfaces")
 pprint.pprint(dev_output)
 print("Prod CSR Interfaces")
