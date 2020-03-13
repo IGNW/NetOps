@@ -20,11 +20,12 @@ prod_csr.connect()
 prod_output = prod_csr.parse('show interfaces description')
 prod_csr.disconnect()
 
-# Determine if the keys are the same
-if dev_output.values() == prod_output.values():
-  print("They have the same Interfaces")
+# Determine if the Interface Protocols are the in the same state btween dev and prod
+if dev_output['interfaces']['GigabitEthernet1']['protocol'] == prod_output['interfaces']['GigabitEthernet1']['protocol']:
+  if dev_output['interfaces']['GigabitEthernet2']['protocol'] == prod_output['interfaces']['GigabitEthernet2']['protocol']:
+    print("They have the same Interface states")
 else:
-  print("The Production Interfaces are Different")
+  print("The Production Interfaces are in Different states")
 
 print("Dev CSR Interfaces")
 pprint.pprint(dev_output)
