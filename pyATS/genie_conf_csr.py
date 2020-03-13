@@ -12,6 +12,7 @@ dev_csr.connect()
 dev_csr_interface = Interface(device=dev_csr, name='GigabitEthernet2')
 dev_csr_interface.ipv4 = "10.3.4.5"
 dev_csr_interface.ipv4.netmask = "255.255.255.0"
+dev_csr_interface.description = "Road to Nowhere..."
 dev_csr_interface.shutdown = False
 
 # Verify Config
