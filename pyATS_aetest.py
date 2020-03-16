@@ -38,7 +38,7 @@ class PingTestcase(aetest.Testcase):
     @aetest.test.loop(destination = ('10.0.0.1', '10.0.0.5'))
     def ping(self, device, destination):
         try:
-            result = self.parameters[device].ping(destination)
+            result = self.parameters[device].ping(addr=destination, command='ping vrf management')
 
         except Exception as e:
             self.failed('Ping {} from device {} failed with error: {}'.format(
