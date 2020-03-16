@@ -5,10 +5,11 @@ testbed = loader.load('ignwlab_dev_testbed.yaml')
 testbed.devices
 
 ios_1 = testbed.devices['ignw-csr']
+ios_2 = testbed.devices['ignw-asav]
 
 # find links from one device to another
 for link in ios_1.find_links(ios_2):
-    print(repr(link))
+    print("intermachine Links: " + repr(link))
 
 # establish basic connectivity
 ios_1.connect()
