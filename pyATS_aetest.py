@@ -2,7 +2,7 @@
 # -------
 #
 #   connectivity_check.py
-
+import re
 from pyats import aetest
 
 class CommonSetup(aetest.CommonSetup):
@@ -29,7 +29,7 @@ class CommonSetup(aetest.CommonSetup):
         with steps.start('Connecting to %s' % ios1.name):
             ios1.connect()
 
-        with steps.start('Connecting to %s' % ios1.name):
+        with steps.start('Connecting to %s' % ios2.name):
             ios2.connect()
 
 @aetest.loop(device = ('ios1', 'ios2'))
@@ -48,7 +48,7 @@ class PingTestcase(aetest.Testcase):
                             ),
                         goto = ['exit'])
         else:
-            match = result.search(r'Success rate is (?P<rate>\d+) percent', result)
+            match = re.search(r'Success rate is (?P<rate>\d+) percent', result)
             success_rate = match.group('rate')
 
             logger.info('Ping {} with success rate of {}%'.format(
