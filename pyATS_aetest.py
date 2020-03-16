@@ -48,7 +48,7 @@ class PingTestcase(aetest.Testcase):
                             ),
                         goto = ['exit'])
         else:
-            match = re.search(r'Success rate is (?P<rate>\d+) percent', result)
+            match = result.search(r'Success rate is (?P<rate>\d+) percent', result)
             success_rate = match.group('rate')
 
             logger.info('Ping {} with success rate of {}%'.format(
