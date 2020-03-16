@@ -5,7 +5,7 @@ testbed = loader.load('ignwlab_dev_testbed.yaml')
 testbed.devices
 
 ios_1 = testbed.devices['ignw-csr']
-ios_2 = testbed.devices['ignw-asav]
+ios_2 = testbed.devices['ignw-asav']
 ios_3 = testbed.devices['ignw_nxosv']
 
 # find links from one device to another
