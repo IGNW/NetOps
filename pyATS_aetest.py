@@ -10,8 +10,8 @@ class CommonSetup(aetest.CommonSetup):
     @aetest.subsection
     def check_topology(self,
                        testbed,
-                       ios1_name = 'ios-1',
-                       ios2_name = 'ios-2'):
+                       ios1_name = 'ignw-csr',
+                       ios2_name = 'ignw-asav'):
         ios1 = testbed.devices[ios1_name]
         ios2 = testbed.devices[ios2_name]
 
@@ -35,7 +35,7 @@ class CommonSetup(aetest.CommonSetup):
 @aetest.loop(device = ('ios1', 'ios2'))
 class PingTestcase(aetest.Testcase):
 
-    @aetest.test.loop(destination = ('10.10.10.1', '10.10.10.2'))
+    @aetest.test.loop(destination = ('10.10.0.253', '10.10.0.254'))
     def ping(self, device, destination):
         try:
             result = self.parameters[device].ping(destination)
@@ -72,7 +72,7 @@ if __name__ == '__main__':
     from pyats.topology import loader
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('--testbed', dest = 'testbed',
+    parser.add_argument('--testbed', dest = 'ignwlab_dev_testbed.yaml',
                         type = loader.load)
 
     args, unknown = parser.parse_known_args()
