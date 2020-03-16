@@ -10,8 +10,8 @@ class CommonSetup(aetest.CommonSetup):
     @aetest.subsection
     def check_topology(self,
                        testbed,
-                       ios2_name = 'ignw-csr',
-                       ios1_name = 'ignw-asav'):
+                       ios1_name = 'ignw-csr',
+                       ios2_name = 'ignw_nxosv'):
         ios1 = testbed.devices[ios1_name]
         ios2 = testbed.devices[ios2_name]
 
@@ -48,14 +48,23 @@ class PingTestcase(aetest.Testcase):
                             ),
                         goto = ['exit'])
         else:
-            match = re.search(r'Success rate is (?P<rate>\d+) percent', result)
-            success_rate = match.group('rate')
+            if 'csr' in str(self.parameters[device]):
+                match = re.search(r'Success rate is (?P<rate>\d+) percent', result)
+                success_rate = match.group('rate')
+                print('Ping {} with success rate of {}%'.format(destination, success_rate))
+            elif 'nxos' in str(self.parameters[device]):
+                '''
+                NEED SOME REGEX HELP
+                --- 10.0.0.5 ping statistics ---
+                5 packets transmitted, 5 packets received, 0.00% packet loss
+                round-trip min/avg/max = 0.941/1.039/1.205 ms
+                '''
+                match = re.search(r'(?P<rate>\d+) packet loss',result)
+                success_rate = match.group('rate')
+                print('Ping {} with packet loss of {}%'.format(destination, success_rate))
+            else:
+                print('Device OS not recognized')
 
-            logger.info('Ping {} with success rate of {}%'.format(
-                                        destination,
-                                        success_rate,
-                                    )
-                               )
 
 class CommonCleanup(aetest.CommonCleanup):
 
