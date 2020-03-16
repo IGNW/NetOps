@@ -72,7 +72,7 @@ if __name__ == '__main__':
     from pyats.topology import loader
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('--testbed', dest = 'ignwlab_dev_testbed.yaml',
+    parser.add_argument('--testbed', dest = 'testbed',
                         type = loader.load)
 
     args, unknown = parser.parse_known_args()
