@@ -5,7 +5,6 @@ testbed = loader.load('ignwlab_dev_testbed.yaml')
 testbed.devices
 
 ios_1 = testbed.devices['ignw-csr']
-ios_2 = testbed.devices['ignw-asav']
 
 # find links from one device to another
 for link in ios_1.find_links(ios_2):
@@ -22,20 +21,20 @@ ios_1.configure('''
 ''')
 
 # establish multiple, simultaneous connections
-ios_2.connect(alias = 'console', via = 'a')
-ios_2.connect(alias = 'vty_1', via = 'vty')
+ios_1.connect(alias = 'console', via = 'a')
+ios_1.connect(alias = 'vty_1', via = 'vty')
 
 # issue commands through each connection separately
-ios_2.vty_1.execute('show running')
-ios_2.console.execute('reload')
+ios_1.vty_1.execute('show running')
+ios_1.console.execute('reload')
 
 # creating connection pools
-ios_2.start_pool(alias = 'pool', size = 2)
+ios_1.start_pool(alias = 'pool', size = 2)
 
 # use connection pool in multiprocessing paradigms
 # each process will be allocated a connection - whenever one is available
 def sleep(seconds):
-    ios_2.pool.execute('sleep %s' % seconds)
+    ios_1.pool.execute('sleep %s' % seconds)
 import multiprocessing
 p1 = multiprocessing.Process(target=sleep, args = (10, ))
 p2 = multiprocessing.Process(target=sleep, args = (10, ))
