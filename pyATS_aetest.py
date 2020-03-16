@@ -10,8 +10,8 @@ class CommonSetup(aetest.CommonSetup):
     @aetest.subsection
     def check_topology(self,
                        testbed,
-                       ios1_name = 'ignw-csr',
-                       ios2_name = 'ignw-asav'):
+                       ios2_name = 'ignw-csr',
+                       ios1_name = 'ignw-asav'):
         ios1 = testbed.devices[ios1_name]
         ios2 = testbed.devices[ios2_name]
 
@@ -35,7 +35,7 @@ class CommonSetup(aetest.CommonSetup):
 @aetest.loop(device = ('ios1', 'ios2'))
 class PingTestcase(aetest.Testcase):
 
-    @aetest.test.loop(destination = ('10.10.0.253', '10.10.0.254'))
+    @aetest.test.loop(destination = ('10.0.0.1', '10.0.0.5'))
     def ping(self, device, destination):
         try:
             result = self.parameters[device].ping(destination)
