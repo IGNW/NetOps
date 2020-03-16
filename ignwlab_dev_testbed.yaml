@@ -43,15 +43,15 @@ topology:
    ignw-csr:
        interfaces:
            GigabitEthernet1:
-               link: link-CSR-ASA
+               link: link-CSR-NXOS
                type: ethernet
    ignw-asav:
        interfaces:
            Management0/0:
-               link: link-ASA-CSR
+               link: link-ASA-NXOS
                type: ethernet
    ignw_nxosv:
        interfaces:
            Management0:
-               link: link-NXOS-CSR
+               link: link-CSR-NXOS
                type: ethernet
