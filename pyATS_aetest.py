@@ -1,10 +1,10 @@
 # Example
 # -------
-#
-#   connectivity_check.py
-import re
+# IGNW Dev Lab Connectivity Check
+import re    # Regex library
 from pyats import aetest
 
+# Setup class for testing topology testbed
 class CommonSetup(aetest.CommonSetup):
 
     @aetest.subsection
@@ -23,7 +23,7 @@ class CommonSetup(aetest.CommonSetup):
 
         assert len(links) >= 1, 'require one link between ios1 and ios2'
 
-
+# Connection to testbed devices
     @aetest.subsection
     def establish_connections(self, steps, ios1, ios2):
         with steps.start('Connecting to %s' % ios1.name):
@@ -32,6 +32,7 @@ class CommonSetup(aetest.CommonSetup):
         with steps.start('Connecting to %s' % ios2.name):
             ios2.connect()
 
+# build a test loop to walk the devices and do the ping tests
 @aetest.loop(device = ('ios1', 'ios2'))
 class PingTestcase(aetest.Testcase):
 
@@ -55,19 +56,13 @@ class PingTestcase(aetest.Testcase):
                 success_rate = match.group('rate')
                 print('Ping {} with success rate of {}%'.format(destination, success_rate))
             elif 'nxos' in str(self.parameters[device]):
-                '''
-                NEED SOME REGEX HELP
-                --- 10.0.0.5 ping statistics ---
-                5 packets transmitted, 5 packets received, 0.00% packet loss
-                round-trip min/avg/max = 0.941/1.039/1.205 ms
-                '''
                 match = re.search(r'(?P<rate>\b[0-9.]+\b)% packet loss',result)
                 success_rate = match.group('rate')
                 print('Ping {} with packet loss of {}%'.format(destination, success_rate))
             else:
                 print('Device OS not recognized')
 
-
+# post processing cleanup area
 class CommonCleanup(aetest.CommonCleanup):
 
     @aetest.subsection
