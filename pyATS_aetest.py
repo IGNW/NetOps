@@ -61,7 +61,7 @@ class PingTestcase(aetest.Testcase):
                 5 packets transmitted, 5 packets received, 0.00% packet loss
                 round-trip min/avg/max = 0.941/1.039/1.205 ms
                 '''
-                match = re.search(r'(?P<rate>\b[0-9.%]\b) packet loss',result)
+                match = re.search(r'(?P<rate>\b[0-9.]+\b)% packet loss',result)
                 success_rate = match.group('rate')
                 print('Ping {} with packet loss of {}%'.format(destination, success_rate))
             else:
