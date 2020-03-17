@@ -48,6 +48,8 @@ class PingTestcase(aetest.Testcase):
                             ),
                         goto = ['exit'])
         else:
+            print(result)
+            print(self.parameters[device])
             if 'csr' in str(self.parameters[device]):
                 match = re.search(r'Success rate is (?P<rate>\d+) percent', result)
                 success_rate = match.group('rate')
