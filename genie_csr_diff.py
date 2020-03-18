@@ -24,8 +24,10 @@ prod_csr.disconnect()
 if dev_output['interfaces']['GigabitEthernet1']['protocol'] == prod_output['interfaces']['GigabitEthernet1']['protocol']:
   if dev_output['interfaces']['GigabitEthernet2']['protocol'] == prod_output['interfaces']['GigabitEthernet2']['protocol']:
     print("They have the same Interface states")
-else:
-  print("The Production Interfaces are in Different states")
+  else:
+    print("The Production Interfaces GigabitEthernet2 are in Different states")
+ else:
+  print("The Production Interfaces GigabitEthernet1 are in Different states")
 
 print("Dev CSR Interfaces")
 pprint.pprint(dev_output)
