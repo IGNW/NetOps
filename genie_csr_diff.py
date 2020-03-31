@@ -26,7 +26,7 @@ if dev_output['interfaces']['GigabitEthernet1']['protocol'] == prod_output['inte
     print("They have the same Interface states")
   else:
     print("The Production Interfaces GigabitEthernet2 are in Different states")
- else:
+else:
   print("The Production Interfaces GigabitEthernet1 are in Different states")
 
 print("Dev CSR Interfaces")
